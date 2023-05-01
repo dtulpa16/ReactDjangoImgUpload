@@ -4,5 +4,5 @@ from images import views
 # <<<<<<<<<<<<<<<<< EXAMPLE FOR STARTER CODE USE <<<<<<<<<<<<<<<<<
 
 urlpatterns = [
-    path('', views.user_cars)
+    path('', views.image_list)
 ]

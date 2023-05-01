@@ -5,37 +5,62 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 const HomePage = () => {
-  // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
-  // The "token" value is the JWT token that you will send in the header of any request requiring authentication
-  //TODO: Add an AddCars Page to add a car for a logged in user's garage
-  const [user, token] = useAuth();
-  const [cars, setCars] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    const fetchCars = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:8000/api/cars/", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        setCars(response.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
-    };
-    fetchCars();
-  }, [token]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Create a FormData object to store the form data
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image_url", image);
+
+    try {
+      // Send a POST request to the Django backend to create a new image
+      const response = await axios.post("http://127.0.0.1:8000/api/images/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="container">
-      <h1>Home Page for {user.username}!</h1>
-      {cars &&
-        cars.map((car) => (
-          <p key={car.id}>
-            {car.year} {car.model} {car.make}
-          </p>
-        ))}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Title:
+        <input
+          type="text"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          required
+        />
+      </label>
+      <br />
+      <label>
+        Description:
+        <textarea
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Image:
+        <input
+          type="file"
+          onChange={(event) => setImage(event.target.files[0])}
+        />
+      </label>
+      <br />
+      <button type="submit">Upload Image</button>
+    </form>
   );
 };
 

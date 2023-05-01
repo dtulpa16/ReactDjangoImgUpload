@@ -6,7 +6,7 @@ from .models import Images
 from .serializers import ImageSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 # Create your views here.
-@api_view(['GET'])
+@api_view(['GET','POST'])
 @permission_classes([AllowAny])
 def image_list(request):
     if request.method == "GET":
