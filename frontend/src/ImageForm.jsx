@@ -33,35 +33,33 @@ export default function ImageForm() {
   };
 
   return (
-    <div className="min-w-[400px] flex flex-row content-start text-red-700">
-      <form onSubmit={handleSubmit} >
-        <label>
-          Title:
-          <input
-            type="text"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Description:
-          <input
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Image:
-          <input
-            type="file"
-            onChange={(event) => setImage(event.target.files[0])}
-          />
-        </label>
-        <br />
-        <button type="submit">Upload Image</button>
+    <div className="grid place-items-center mt-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col flex-wrap gap-2 bg-indigo-300 rounded-lg p-8 shadow-md shadow-gray-300"
+      >
+        <label>Title:</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          required
+        />
+
+        <label>Description:</label>
+        <input
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+
+        <label>Image:</label>
+        <input
+          type="file"
+          onChange={(event) => setImage(event.target.files[0])}
+        />
+        <div>
+          <button type="submit">Upload Image</button>
+        </div>
       </form>
     </div>
   );
