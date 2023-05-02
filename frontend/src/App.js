@@ -1,6 +1,6 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import "./input.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // Pages Imports

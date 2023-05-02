@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 export default function ImageForm() {
   const [title, setTitle] = useState("");
@@ -33,34 +33,36 @@ export default function ImageForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input
-          type="text"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Description:
-        <input
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Image:
-        <input
-          type="file"
-          onChange={(event) => setImage(event.target.files[0])}
-        />
-      </label>
-      <br />
-      <button type="submit">Upload Image</button>
-    </form>
+    <div className="min-w-[400px] flex flex-row content-start text-red-700">
+      <form onSubmit={handleSubmit} >
+        <label>
+          Title:
+          <input
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Description:
+          <input
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Image:
+          <input
+            type="file"
+            onChange={(event) => setImage(event.target.files[0])}
+          />
+        </label>
+        <br />
+        <button type="submit">Upload Image</button>
+      </form>
+    </div>
   );
 }
