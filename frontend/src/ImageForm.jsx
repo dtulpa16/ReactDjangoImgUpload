@@ -44,12 +44,14 @@ export default function ImageForm() {
           value={title}
           onChange={(event) => setTitle(event.target.value)}
           required
+          className="px-1"
         />
 
         <label>Description:</label>
         <input
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+          className="px-1"
         />
 
         <label>Image:</label>
@@ -57,9 +59,16 @@ export default function ImageForm() {
           type="file"
           onChange={(event) => setImage(event.target.files[0])}
         />
-        <div>
-          <button type="submit">Upload Image</button>
-        </div>
+        {image && (
+          <div>
+            <button
+              className="bg-white p-1 rounded-md duration-100 hover:scale-105"
+              type="submit"
+            >
+              Upload Image
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
