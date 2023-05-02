@@ -1,18 +1,80 @@
-# ReactDjango_JWT_StarterCode
+# Django and React Image Uploading Example
+Resource used: https://dev.to/thomz/uploading-images-to-django-rest-framework-from-forms-in-react-3jhj
 
-Starter code for full stack React + Django applications using JWT for authentication/authorization and a fully working register/login system on the React side
+This is an example application that demonstrates how to upload images using Django and React.
 
-## NOTE
+## Getting Started
 
-"cars" app in Django backend for example purposes only. Study it closely and review provided resources to understand how to properly create protected endpoints that require a JWT token for authorization.
+### Prerequisites
 
-## For implementing user roles
+- Node.js
+- Python 3
+- Django 3.x
+- Django REST Framework
+- django-cors-headers
+- Pillow
 
-- see comments in the following files in the order they are listed
-  - backend/authentication/models.py
-  - backend/authentication/serializers.py (note that there are several places needing modification in that file)
-- If modifying the User class in authentication/models.py, make sure to drop your existing database,
-  create it, and run migrations from scratch
-- for a great reference, see the following article: https://simpleisbetterthancomplex.com/tutorial/2018/01/18/how-to-implement-multiple-user-types-with-django.html
-  - note that this article is from 2018 and dealing with a full stack Django application scenario with HTML/CSS templates. The principles of setting up the backend portion for User roles is still valid!
-- once user roles are set up on your backend, you can now utilize them on the frontend. Recommend reviewing the React Router slideshow for ideas on how to use descendant routes and conditional rendering to control who can access what parts of your application based on a role!
+### Installation
+
+1. Clone the repository:
+git clone https://github.com/dtulpa16/ReactDjangoImgUpload
+
+2. Install the required Python packages:
+```powershell
+cd backend
+```
+```powershell
+pipenv install
+```
+```powershell
+pipenv shell
+```
+
+3. Add local_settings.py to drf_jwt_backend folder w/ appropriate database name
+```python
+ # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'shhhhItsASecret'
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'db_name',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'autocommit': True
+        }
+    }
+}
+```
+4. Migrate
+```powershell
+python manage.py migrate
+```
+
+5. Run server
+```powershell
+python manage.py runserver
+```
+
+6. Split terminal
+
+7. Navigate to Frontend
+```powershell 
+cd frontend
+```
+
+8.Install Node Modules
+```powershell
+npm i
+```
+
+9. Run React Server
+```powershell
+npm start
+```
